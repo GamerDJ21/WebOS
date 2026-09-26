@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VoxelOS</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="taskbar">
+      <button id="startButton" class="start-button" type="button" aria-expanded="false" aria-controls="startMenu">
+        <span class="start-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span>VoxelOS</span>
+      </button>
+      <div class="taskbar-apps" aria-label="Open apps">
+        <button id="notesTaskbar" class="taskbar-app" type="button" aria-label="Open Notes">
+          <span class="notes-icon taskbar-notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>Notes</span>
+        </button>
+      </div>
+      <div class="system-tray">
+        <span class="taskbar-label">Hacking Time</span>
+        <time id="timeElement" class="clock"></time>
+      </div>
+    </header>
+
+    <main class="desktop" aria-label="Desktop">
+      <section class="desktop-widget" aria-labelledby="desktopTitle">
+        <img src="Dj.png" alt="" />
+        <h1 id="desktopTitle">VoxelOS</h1>
+        <p>
+          <dfn>VoxelOS</dfn> is a feature-limited
+          <abbr title="Operating System">OS</abbr> to see those things<br />
+          which others <code>"cannot see"</code>
+        </p>
+      </section>
+
+      <button id="notesopen" class="desktop-icon" type="button" aria-label="Open Notes">
+        <span class="notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Notes</span>
+      </button>
+
+      <section id="notes" class="window" aria-labelledby="notesTitle" aria-hidden="true" hidden>
+        <header id="notesheader" class="windowheader">
+          <h1 id="notesTitle">Notes</h1>
+          <button id="notesclose" class="closebutton" type="button" aria-label="Close Notes" title="Close"></button>
+        </header>
+        <div id="notesContent" class="notes-content" contenteditable="true" role="textbox" aria-label="Note contents" aria-multiline="true" spellcheck="true">Write your notes here...</div>
+      </section>
+    </main>
+
+    <section id="startMenu" class="start-menu" aria-label="VoxelOS app launcher" hidden>
+      <div class="start-menu-heading">
+        <span class="start-glyph" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <div>
+          <strong>VoxelOS</strong>
+          <span>Apps</span>
+        </div>
+      </div>
+      <p class="start-menu-label">Pinned</p>
+      <button id="menuNotes" class="start-menu-app" type="button">
+        <span class="notes-icon menu-notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span><strong>Notes</strong><small>Write something down</small></span>
+      </button>
+      <div class="start-menu-footer">VoxelOS desktop</div>
+    </section>
+  </body>
+</html>
