@@ -18,6 +18,14 @@
           <span class="notes-icon taskbar-notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
           <span>Notes</span>
         </button>
+        <button id="browserTaskbar" class="taskbar-app" type="button" aria-label="Open Browser">
+          <span class="browser-icon taskbar-browser-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>Browser</span>
+        </button>
+        <button id="calculatorTaskbar" class="taskbar-app" type="button" aria-label="Open Calculator">
+          <span class="calculator-icon taskbar-calculator-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span>Calculator</span>
+        </button>
       </div>
       <div class="system-tray">
         <span class="taskbar-label">Hacking Time</span>
@@ -35,7 +43,7 @@
           which others <code>"cannot see"</code>
         </p>
       </section>
-
+<!--Notes-->
       <button id="notesopen" class="desktop-icon" type="button" aria-label="Open Notes">
         <span class="notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         <span>Notes</span>
@@ -48,6 +56,80 @@
         </header>
         <div id="notesContent" class="notes-content" contenteditable="true" role="textbox" aria-label="Note contents" aria-multiline="true" spellcheck="true">Write your notes here...</div>
       </section>
+<!--Browser-->
+      <button id="browseropen" class="desktop-icon" type="button" aria-label="Open Browser">
+        <span class="browser-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Browser</span>
+      </button>
+
+      <section id="browser" class="window" aria-labelledby="browserTitle" aria-hidden="true" hidden>
+        <header id="browserheader" class="windowheader">
+          <h1 id="browserTitle">Browser</h1>
+          <button id="browserclose" class="closebutton" type="button" aria-label="Close Browser" title="Close"></button>
+        </header>
+        <form id="browserForm" class="browser-toolbar" role="search">
+          <button id="browserBack" class="browser-control" type="button" aria-label="Go back" title="Go back" disabled>&larr;</button>
+          <button id="browserForward" class="browser-control" type="button" aria-label="Go forward" title="Go forward" disabled>&rarr;</button>
+          <button id="browserReload" class="browser-control" type="button" aria-label="Reload page" title="Reload page">&#8635;</button>
+          <input id="browserAddress" class="browser-address" type="text" placeholder="Search or enter a web address" aria-label="Search or enter a web address" autocomplete="url" spellcheck="false" />
+          <button class="browser-go" type="submit">Go</button>
+          <button id="browserNewTab" class="browser-control browser-new-tab" type="button" aria-label="Open current page in a new tab" title="Open current page in a new tab">&#8599;</button>
+        </form>
+        <div class="browser-content">
+          <div id="browserWelcome" class="browser-welcome">
+            <span class="browser-kicker">VOXELOS / WEB</span>
+            <h2>Where to?</h2>
+            <p>Search the web or enter a web address above.</p>
+          </div>
+          <iframe id="browserFrame" src="about:blank" title="Browser content" hidden></iframe>
+        </div>
+      </section>
+
+<!--Calculator-->
+
+      <button id="calculatoropen" class="desktop-icon" type="button" aria-label="Open Calculator">
+        <span class="calculator-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Calculator</span>
+      </button>
+      <section id="calculator" class="window" aria-labelledby="calculatorTitle" aria-hidden="true" hidden>
+        <header id="calculatorheader" class="windowheader">
+          <h1 id="calculatorTitle">Calculator</h1>
+          <button id="calculatorclose" class="closebutton" type="button" aria-label="Close Calculator" title="Close"></button>
+        </header>
+        <div class="calculator-content">
+          <input id="calculatorDisplay" class="calculator-display" type="text" value="" readonly aria-label="Calculator display" />
+          <div class="calculator-buttons">
+            <button type="button" data-value="7">7</button>
+            <button type="button" data-value="8">8</button>
+            <button type="button" data-value="9">9</button>
+            <button type="button" data-value="/" aria-label="Divide">/</button>
+
+            <button type="button" data-value="4">4</button>
+            <button type="button" data-value="5">5</button>
+            <button type="button" data-value="6">6</button>
+            <button type="button" data-value="*" aria-label="Multiply">*</button>
+
+            <button type="button" data-value="1">1</button>
+            <button type="button" data-value="2">2</button>
+            <button type="button" data-value="3">3</button>
+            <button type="button" data-value="-">-</button>
+
+            <button type="button" data-value="0">0</button>
+            <button type="button" data-value=".">.</button>
+            <button type="button" id="calculatorEquals" data-value="=" aria-label="Equals">=</button>
+            <button type="button" data-value="+">+</button>
+
+            <div class="calculator-clear">
+              <span>Clear:</span>
+              <div class="clear-buttons">
+                <button id="clearEntryButton" class="clear-entry-button" type="button" data-value="CE" aria-label="Clear Entry (CE)" title="Clear Entry (CE)">CE</button>
+                <button id="clearAllButton" class="clear-all-button" type="button" data-value="C" aria-label="Clear All (C)" title="Clear All (C)">C</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <section id="startMenu" class="start-menu" aria-label="VoxelOS app launcher" hidden>
@@ -63,7 +145,19 @@
         <span class="notes-icon menu-notes-icon" aria-hidden="true"><span></span><span></span><span></span></span>
         <span><strong>Notes</strong><small>Write something down</small></span>
       </button>
+      <button id="menuBrowser" class="start-menu-app" type="button">
+        <span class="browser-icon menu-browser-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span><strong>Browser</strong><small>Surf the web</small></span>
+      </button>
+      <button id="menuCalculator" class="start-menu-app" type="button">
+        <span class="calculator-icon menu-calculator-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span><strong>Calculator</strong><small>Do some math</small></span>
+      </button>
       <div class="start-menu-footer">VoxelOS desktop</div>
     </section>
+
+    
+
+
   </body>
 </html>

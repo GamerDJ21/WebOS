@@ -112,6 +112,91 @@ body {
   height: 1px;
 }
 
+.browser-icon {
+  position: relative;
+  display: block;
+  width: 42px;
+  height: 42px;
+  overflow: hidden;
+  border: 2px solid #d4f0e5;
+  border-radius: 50%;
+  background: linear-gradient(150deg, #42a88e 0 48%, #176b70 49% 100%);
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.25);
+}
+
+.browser-icon::before,
+.browser-icon::after {
+  position: absolute;
+  content: "";
+}
+
+.browser-icon::before {
+  inset: 3px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+}
+
+.browser-icon::after {
+  top: 18px;
+  right: 1px;
+  left: 1px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.browser-icon span {
+  position: absolute;
+  z-index: 1;
+  right: 2px;
+  left: 2px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.browser-icon span:first-child {
+  top: 10px;
+}
+
+.browser-icon span:nth-child(2) {
+  bottom: 10px;
+}
+
+.browser-icon span:last-child {
+  display: none;
+}
+
+.taskbar-browser-icon {
+  flex: 0 0 25px;
+  width: 25px;
+  height: 25px;
+}
+
+.taskbar-browser-icon::before {
+  inset: 2px 6px;
+}
+
+.taskbar-browser-icon::after {
+  top: 10px;
+}
+
+.taskbar-browser-icon span:first-child {
+  top: 6px;
+}
+
+.taskbar-browser-icon span:nth-child(2) {
+  bottom: 6px;
+}
+
+.menu-browser-icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 36px;
+}
+
+.menu-browser-icon::after {
+  top: 15px;
+}
+
 .system-tray {
   justify-content: flex-end;
   gap: 14px;
@@ -226,6 +311,74 @@ body {
   background: #9f8130;
 }
 
+.calculator-icon {
+  position: relative;
+  display: grid;
+  width: 42px;
+  height: 48px;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: end;
+  gap: 4px;
+  padding: 24px 7px 7px;
+  border: 1px solid rgba(20, 48, 66, 0.3);
+  border-radius: 6px;
+  background: #e98555;
+  box-shadow: 0 4px 9px rgba(0, 0, 0, 0.25);
+}
+
+.calculator-icon::before {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  left: 6px;
+  height: 11px;
+  border: 1px solid rgba(20, 48, 66, 0.35);
+  border-radius: 2px;
+  background: #e8f1df;
+  content: "";
+}
+
+.calculator-icon span {
+  height: 5px;
+  border-radius: 1px;
+  background: #fff1dc;
+}
+
+.taskbar-calculator-icon {
+  flex: 0 0 25px;
+  width: 25px;
+  height: 29px;
+  gap: 2px;
+  padding: 15px 4px 4px;
+  border-radius: 4px;
+}
+
+.taskbar-calculator-icon::before {
+  top: 3px;
+  right: 3px;
+  left: 3px;
+  height: 7px;
+}
+
+.taskbar-calculator-icon span {
+  height: 3px;
+}
+
+.menu-calculator-icon {
+  flex: 0 0 36px;
+  width: 36px;
+  height: 40px;
+  gap: 3px;
+  padding: 19px 6px 6px;
+}
+
+.menu-calculator-icon::before {
+  top: 5px;
+  right: 5px;
+  left: 5px;
+  height: 10px;
+}
+
 .start-menu {
   position: fixed;
   bottom: 76px;
@@ -330,6 +483,14 @@ body {
   display: none;
 }
 
+#browser {
+  top: 38px;
+  left: max(24px, calc(50% - 430px));
+  width: min(860px, calc(100vw - 48px));
+  height: min(620px, calc(100% - 56px));
+  min-height: 280px;
+}
+
 .windowheader {
   display: flex;
   min-height: 48px;
@@ -405,6 +566,123 @@ body {
   outline: none;
 }
 
+.browser-toolbar {
+  display: flex;
+  min-height: 48px;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-bottom: 1px solid #dbe2e8;
+  background: #f1f4f5;
+}
+
+.browser-control,
+.browser-go {
+  display: grid;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #253247;
+  background: transparent;
+  font: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.browser-control:hover:not(:disabled),
+.browser-control:focus-visible,
+.browser-go:hover,
+.browser-go:focus-visible {
+  border-color: #c8d5d8;
+  outline: none;
+  background: #fff;
+}
+
+.browser-control:disabled {
+  color: #9aa5ad;
+  cursor: default;
+}
+
+.browser-address {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid #cad4d9;
+  border-radius: 6px;
+  color: #172033;
+  background: #fff;
+  font: inherit;
+  font-size: 0.875rem;
+}
+
+.browser-address:focus {
+  border-color: #176b70;
+  outline: 2px solid rgba(23, 107, 112, 0.2);
+}
+
+.browser-go {
+  width: 42px;
+  flex-basis: 42px;
+  font-size: 0.85rem;
+  font-weight: 650;
+}
+
+.browser-new-tab {
+  border-color: #cad4d9;
+  background: #fff;
+}
+
+.browser-content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  background: #fff;
+}
+
+.browser-content iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #fff;
+}
+
+.browser-welcome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(420px, calc(100% - 40px));
+  transform: translate(-50%, -50%);
+  color: #253247;
+  text-align: center;
+}
+
+.browser-welcome[hidden] {
+  display: none;
+}
+
+.browser-kicker {
+  color: #176b70;
+  font-size: 0.72rem;
+  font-weight: 750;
+}
+
+.browser-welcome h2 {
+  margin: 12px 0 6px;
+  font-size: 1.75rem;
+}
+
+.browser-welcome p {
+  margin: 0;
+  color: #667386;
+  font-size: 0.9rem;
+}
+
 @media (max-width: 520px) {
   .taskbar {
     gap: 6px;
@@ -440,4 +718,88 @@ body {
     top: 18px;
     left: 16px;
   }
+
+  #browser {
+    top: 12px;
+    left: 8px;
+    width: calc(100vw - 16px);
+    height: calc(100% - 20px);
+  }
+
+  .browser-toolbar {
+    gap: 3px;
+    padding: 6px;
+  }
+
+  .browser-control,
+  .browser-go {
+    width: 29px;
+    flex-basis: 29px;
+  }
+
+  .browser-go {
+    width: 36px;
+    flex-basis: 36px;
+  }
+}
+
+.calculator-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 18px;
+  background: #f9f9f9;
+}
+
+.calculator-display {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 12px;
+  padding: 0 12px;
+  border: 1px solid #cad4d9;
+  border-radius: 6px;
+  color: #172033;
+  background: #fff;
+  font-family: "Courier New", monospace;
+  font-size: 1.25rem;
+}
+
+
+.calculator-content .calculator-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.calculator-content .calculator-buttons button {
+  height: 48px;
+  border: 1px solid #cad4d9;
+  border-radius: 6px;
+  color: #172033;
+  background: #fff;
+  font: inherit;
+  font-size: 1.1rem;
+  cursor: pointer;
+} 
+
+.calculator-content .calculator-buttons button:hover,
+.calculator-content .calculator-buttons button:focus-visible {
+  border-color: #176b70;
+  outline: none;
+  background: #e6f2f1;
+} 
+
+.calculator-content .calculator-buttons button:active {
+  background: #d0e6e4;
+} 
+
+.calculator-buttons button[data-value="="] {
+  background: #176b70;
+  color: #fff;
+} 
+
+.calculator-buttons button[data-value="="]:hover,
+.calculator-buttons button[data-value="="]:focus-visible {
+  background: #0f4c4a;
+  outline: none;  
 }
