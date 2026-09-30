@@ -14,6 +14,4 @@ Interface: Includes a desktop environment, app icons, taskbar, system clock, and
 
 Development: Built using HTML, CSS, and JavaScript. It took me around 3 hours to build.
 
-Note: The browser works by clicking the arrow button in the right corner.
-
 I used AI to debug and clean the code. Some pieces of code are written by AI because I couldn't figure them out :p .
