@@ -13,6 +13,7 @@ const browserForm = document.querySelector("#browserForm");
 const browserAddress = document.querySelector("#browserAddress");
 const browserFrame = document.querySelector("#browserFrame");
 const browserWelcome = document.querySelector("#browserWelcome");
+const browserWelcomeMessage = browserWelcome.querySelector("p");
 const browserBackButton = document.querySelector("#browserBack");
 const browserForwardButton = document.querySelector("#browserForward");
 const browserReloadButton = document.querySelector("#browserReload");
@@ -35,6 +36,7 @@ const calculatorButtons = document.querySelectorAll(".calculator-buttons button,
 let highestWindowLayer = 1;
 let browserHistory = [];
 let browserHistoryIndex = -1;
+let browserTab = null;
 
 function updateTime() {
   timeElement.textContent = new Date().toLocaleString();
@@ -98,6 +100,18 @@ function updateBrowserHistoryControls() {
   browserForwardButton.disabled = browserHistoryIndex >= browserHistory.length - 1;
 }
 
+function openBrowserTab(url) {
+  if (browserTab && !browserTab.closed) {
+    browserTab.location.href = url;
+    return true;
+  }
+
+  browserTab = window.open(url, "_blank");
+  if (!browserTab) return false;
+  browserTab.opener = null;
+  return true;
+}
+
 function navigateBrowser(url, addToHistory = true) {
   if (!url) {
     browserAddress.setCustomValidity("Enter a web address or search term.");
@@ -112,9 +126,11 @@ function navigateBrowser(url, addToHistory = true) {
     browserHistoryIndex = browserHistory.length - 1;
   }
   browserAddress.value = url;
-  browserWelcome.hidden = true;
-  browserFrame.hidden = false;
-  browserFrame.src = url;
+  browserFrame.hidden = true;
+  browserWelcome.hidden = false;
+  browserWelcomeMessage.textContent = openBrowserTab(url)
+    ? "Page opened in a new tab."
+    : "Your browser blocked the new tab. Allow pop-ups and try again.";
   updateBrowserHistoryControls();
 }
 
@@ -205,7 +221,7 @@ browserForwardButton.addEventListener("click", () => {
   navigateBrowser(browserHistory[browserHistoryIndex], false);
 });
 browserReloadButton.addEventListener("click", () => {
-  if (browserHistoryIndex >= 0) browserFrame.src = browserHistory[browserHistoryIndex];
+  if (browserHistoryIndex >= 0) navigateBrowser(browserHistory[browserHistoryIndex], false);
 });
 browserNewTabButton.addEventListener("click", () => {
   if (browserHistoryIndex >= 0) window.open(browserHistory[browserHistoryIndex], "_blank", "noopener,noreferrer");
