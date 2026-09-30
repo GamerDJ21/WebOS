@@ -8,7 +8,7 @@ Built-in Apps:
  
 - 🧮 Calculator — Perform quick calculations.
 - 📝 Notes — Write and organise notes.
-- 🌐 Browser — Browse the web from within VoxelOS.
+- 🌐 Browser — Browse the web.
 
 Interface: Includes a desktop environment, app icons, taskbar, system clock, and interactive windows.
 
