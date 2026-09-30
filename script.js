@@ -23,6 +23,7 @@ const startButton = document.querySelector("#startButton");
 const startMenu = document.querySelector("#startMenu");
 const menuNotesButton = document.querySelector("#menuNotes");
 const menuBrowserButton = document.querySelector("#menuBrowser");
+const menuCalculatorButton = document.querySelector("#menuCalculator");
 const calculatorWindow = document.querySelector("#calculator");
 const calculatorHeader = document.querySelector("#calculatorheader");
 const calculatorOpenButton = document.querySelector("#calculatoropen");
@@ -178,6 +179,7 @@ notesOpenButton.addEventListener("click", openNotes);
 notesTaskbarButton.addEventListener("click", openNotes);
 notesCloseButton.addEventListener("click", closeNotes);
 menuNotesButton.addEventListener("click", openNotes);
+menuCalculatorButton.addEventListener("click", openCalculator);
 calculatorOpenButton.addEventListener("click", openCalculator);
 if (calculatorTaskbarButton) {
   calculatorTaskbarButton.addEventListener("click", openCalculator);
@@ -230,6 +232,11 @@ browserWindow.addEventListener("pointerdown", () => {
   browserWindow.style.zIndex = highestWindowLayer;
 });
 
+calculatorWindow.addEventListener("pointerdown", () => {
+  highestWindowLayer += 1;
+  calculatorWindow.style.zIndex = highestWindowLayer;
+});
+
 notesHeader.addEventListener("pointerdown", (event) => {
   if (event.target.closest("button")) return;
 
@@ -278,6 +285,31 @@ browserHeader.addEventListener("pointerup", () => {
 
 browserHeader.addEventListener("pointercancel", () => {
   browserHeader.onpointermove = null;
+});
+
+calculatorHeader.addEventListener("pointerdown", (event) => {
+  if (event.target.closest("button")) return;
+
+  const windowRect = calculatorWindow.getBoundingClientRect();
+  const desktopTop = desktop.getBoundingClientRect().top;
+  const pointerOffsetX = event.clientX - windowRect.left;
+  const pointerOffsetY = event.clientY - windowRect.top;
+
+  calculatorHeader.setPointerCapture(event.pointerId);
+  calculatorHeader.onpointermove = (moveEvent) => {
+    const left = Math.max(0, Math.min(moveEvent.clientX - pointerOffsetX, window.innerWidth - calculatorWindow.offsetWidth));
+    const top = Math.max(0, Math.min(moveEvent.clientY - pointerOffsetY - desktopTop, window.innerHeight - desktopTop - calculatorWindow.offsetHeight));
+    calculatorWindow.style.left = `${left}px`;
+    calculatorWindow.style.top = `${top}px`;
+  };
+});
+
+calculatorHeader.addEventListener("pointerup", () => {
+  calculatorHeader.onpointermove = null;
+});
+
+calculatorHeader.addEventListener("pointercancel", () => {
+  calculatorHeader.onpointermove = null;
 });
 
 updateTime();
