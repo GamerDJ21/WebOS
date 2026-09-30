@@ -1,6 +1,6 @@
 VoxelOS is my first web-based operating system, designed with a clean, modern desktop interface and essential built-in applications. 
 
-Purpose: To explore how an operating system interface can be recreated using web technologies while providing useful everyday tools.
+I made it to explore how an operating system interface can be recreated on the web.
 
 How to use: Users can interact with the desktop and taskbar to open the applications.
 
@@ -12,7 +12,7 @@ Built-in Apps:
 
 Interface: Includes a desktop environment, app icons, taskbar, system clock, and interactive windows.
 
-Development: Built using HTML, CSS, and JavaScript.
+Development: Built using HTML, CSS, and JavaScript. It took me around 3 hours to build.
 
 Note: The browser works by clicking the arrow button in the right corner.
 
